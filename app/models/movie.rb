@@ -16,7 +16,19 @@ class Movie < ApplicationRecord
         where("released_on < ?", Time.now).order("released_on desc")
     end
 
+    def blockbuster?
+        reviews.size > 50 && average_stars >= 4
+    end
+
     def flop?
-        total_gross.blank? || total_gross < 225_000_000
+        total_gross.blank? || !self.blockbuster? && total_gross < 225_000_000
+    end
+
+    def average_stars
+        reviews.average(:stars) || 0.0
+    end
+
+    def average_stars_as_percent
+        (self.average_stars / 5.0) * 100
     end
 end
