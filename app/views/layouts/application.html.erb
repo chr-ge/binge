@@ -10,16 +10,12 @@
   </head>
 
   <body>
-    <header>
-      <h1>BingeBerry</h1>
-    </header>
+    <%= render "layouts/header"%>
 
     <div class="content">
       <%= yield %>
     </div>
 
-    <footer>
-      Copyright &copy; <%= Time.now.year %>
-    </footer>
+    <%= render "layouts/footer"%>
   </body>
 </html>
