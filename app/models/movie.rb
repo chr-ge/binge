@@ -1,9 +1,12 @@
 class Movie < ApplicationRecord
-    has_many :reviews, dependent: :destroy
+    has_many :reviews, -> { order(created_at: :desc) }, dependent: :destroy
     has_many :critics, through: :reviews, source: :user
 
     has_many :favorites, dependent: :destroy
     has_many :fans, through: :favorites, source: :user
+
+    has_many :characterizations, dependent: :destroy
+    has_many :genres, through: :characterizations
 
     RATINGS = %w(G PG PG-13 R NC-17)
 
@@ -16,9 +19,13 @@ class Movie < ApplicationRecord
     }
     validates :rating, inclusion: { in: RATINGS }
 
-    def self.released
-        where("released_on < ?", Time.now).order("released_on desc")
-    end
+    scope :released, -> { where("released_on < ?", Time.now).order("released_on desc") }
+    scope :upcoming, -> { where("released_on > ?", Time.now).order("released_on asc") }
+    scope :recent, ->(max=5) { released.limit(max) }
+    scope :grossed_less_than, ->(amount) { released.where("total_gross < ?", amount) }
+    scope :grossed_greater_than, ->(amount) { released.where("total_gross > ?", amount) }
+    scope :hits, -> { released.where("total_gross >= 300000000").order(total_gross: :desc) }
+    scope :flops, -> { released.where("total_gross < 22500000").order(total_gross: :asc) }
 
     def blockbuster?
         reviews.size > 50 && average_stars >= 4

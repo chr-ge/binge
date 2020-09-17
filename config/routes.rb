@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :favorites
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "movies#index"
+
+  get "movies/filter/:filter" => "movies#index", as: :filtered_movies
 
   resources :users
   get "signup" => "users#new"
@@ -13,4 +14,7 @@ Rails.application.routes.draw do
     resources :reviews
     resources :favorites, only: [:create, :destroy]
   end
+
+  resources :genres
+  resources :favorites
 end

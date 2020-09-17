@@ -39,6 +39,15 @@
     <%= link_to "Write Review", new_movie_review_path(@movie), class: "review" %>
   </div>
   <aside>
+    <% if @genres.present? %>
+      <h4>Genres</h4>
+      <ul>
+        <% @genres.each do |g| %>
+          <li><%= g.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
     <% if @fans.present? %>
         <h4>Fans</h4>
         <ul>
