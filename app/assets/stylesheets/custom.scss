@@ -36,8 +36,17 @@ $secondary: $dark-gray;
 
 // Custom CSS
 
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 .content {
   @extend .container;
+  flex: 1 0 auto;
 }
 
 // Header and Nav
@@ -366,6 +375,7 @@ ul.reviews {
 // Footer
 
 footer {
+  flex-shrink: 0;
   background: $black;
   color: $light-gray;
   text-align: center;
@@ -504,7 +514,6 @@ form:not([class="button_to"]) {
 }
 
 // Flashes
-
 .flash {
   @extend .alert;
   text-align: center;
@@ -520,12 +529,11 @@ form:not([class="button_to"]) {
   }
 
   &.danger {
-    background-color: #FFA715;
+    background-color: $orange;
   }
 }
 
 // Errors
-
 section.errors {
   margin: 1rem 0;
   padding: 1.5rem;
@@ -547,7 +555,6 @@ section.errors {
 // Star Rating
 //
 // Credit: https://codepen.io/filcp/pen/QvZVOg
-
 .star-rating {
   display: flex;
   align-items: center;
