@@ -1,11 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  rating: MyString
-  total_gross: MyDecimal
+spiderman2:
+  title: "Spiderman 2"
+  rating: "PG-13"
+  total_gross: "321321321.0"
+  duration: "181 min"
+  description: "Spiderman2 movie PG-13 181min 2010"
+  released_on: "2010-12-15 00:00:00"
+  director: "Mark Andrew"
+  slug: "spiderman-2"
 
-two:
-  title: MyString
-  rating: MyString
-  total_gross: MyDecimal
+superman:
+  title: "Superman"
+  rating: "PG"
+  total_gross: "654321654.0"
+  duration: "181 min"
+  description: "Superman movie PG 181min 1998"
+  released_on: "1998-12-15 00:00:00"
+  director: "Mark W"
+  slug: "superman"
