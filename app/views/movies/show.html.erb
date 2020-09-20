@@ -31,10 +31,12 @@
         <th>Duration:</th>
         <td><%= @movie.duration %></td>
       </tr>
-      <tr>
-        <th>Total Gross:</th>
-        <td><%= total_gross(@movie) %></td>
-      </tr>
+      <% if @movie.released? %>
+        <tr>
+          <th>Total Gross:</th>
+          <td><%= total_gross(@movie) %></td>
+        </tr>
+      <% end %>
     </table>
     <%= link_to "Write Review", new_movie_review_path(@movie), class: "review" %>
   </div>

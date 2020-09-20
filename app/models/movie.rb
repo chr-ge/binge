@@ -30,6 +30,10 @@ class Movie < ApplicationRecord
     scope :hits, -> { released.where("total_gross >= 300000000").order(total_gross: :desc) }
     scope :flops, -> { released.where("total_gross < 22500000").order(total_gross: :asc) }
 
+    def released? 
+        released_on < Time.now
+    end
+
     def blockbuster?
         reviews.size > 50 && average_stars >= 4
     end
